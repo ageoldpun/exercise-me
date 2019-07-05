@@ -1,39 +1,167 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
 import Dropdown from 'react-bootstrap/Dropdown';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+import Table from 'react-bootstrap/Table';
 
-export default function Treadmill(props) {
-  const selectedPace = 'Pace'
+export default class Treadmill extends React.Component {
+  constructor(props) {
+    super(props);
 
-  return (
-    <div className="mt-4">
-      <h2>Treadmill</h2>
-      <div>
-        <form>
-          <div className="form-row">
-            <div className="col">
-              <input type="text" className="form-control" placeholder="Time" />
-            </div>
-            <div className="col">
-              <Dropdown>
+    this.state = {
+      treadmillExercises: [],
+      selectedTreadmillExercise: {
+        time: null,
+        incline: 1,
+        pace: 'Base Pace',
+      },
+    }
+    this.handleTimeChange = this.handleTimeChange.bind(this);
+    this.handlePaceChange = this.handlePaceChange.bind(this);
+    this.handleInclineChange = this.handleInclineChange.bind(this);
+    this.onAddBlockClick = this.onAddBlockClick.bind(this);
+  }
+
+  handleTimeChange(changeEvent) {
+    this.setState({
+      ...this.state,
+      selectedTreadmillExercise: {
+        ...this.state.selectedTreadmillExercise,
+        time: changeEvent.target.value,
+      },
+    })
+  }
+
+  handlePaceChange(changeEvent) {
+    this.setState({
+      ...this.state,
+      selectedTreadmillExercise: {
+        ...this.state.selectedTreadmillExercise,
+        pace: changeEvent.target.value,
+      },
+    });
+  }
+
+  handleInclineChange(eventKey) {
+    this.setState({
+      ...this.state,
+      selectedTreadmillExercise: {
+        ...this.state.selectedTreadmillExercise,
+        incline: eventKey,
+      },
+    });
+  }
+
+  onAddBlockClick() {
+    this.state.treadmillExercises.push(this.state.selectedTreadmillExercise);
+    this.setState({
+      selectedTreadmillExercise: {
+        time: null,
+        incline: 1,
+        pace: 'Base Pace',
+      }
+    });
+  }
+
+  render() {
+    return (
+      <div className="mt-4">
+        <h2>Treadmill</h2>
+        {this.state.treadmillExercises.length > 0 &&
+          <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Pace</th>
+              <th>Incline</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.treadmillExercises.map(exercise => (
+              <tr>
+                <td>{exercise.time}</td>
+                <td>{exercise.pace}</td>
+                <td>{exercise.incline}</td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+        }
+        <Form>
+          <Form.Group as={Row}>
+            <Form.Label column sm={2}>
+              Time
+            </Form.Label>
+            <Col sm={2}>
+              <Form.Control type="text" placeholder="seconds" value={this.state.selectedTreadmillExercise.time} onChange={this.handleTimeChange} />
+            </Col>
+          </Form.Group>
+
+          <Form.Group as={Row}>
+            <Form.Label column sm={2}>
+              Incline
+            </Form.Label>
+            <Col sm={10}>
+              <Dropdown  onSelect={this.handleInclineChange}>
                 <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-                  {selectedPace}
+                  {this.state.selectedTreadmillExercise.incline}
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                  <Dropdown.Item href="#/action-1">Base Pace</Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">Push Pace</Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">All Out</Dropdown.Item>
+                  <Dropdown.Item eventKey="1">1</Dropdown.Item>
+                  <Dropdown.Item eventKey="2">2</Dropdown.Item>
+                  <Dropdown.Item eventKey="3">3</Dropdown.Item>
+                  <Dropdown.Item eventKey="4">4</Dropdown.Item>
+                  <Dropdown.Item eventKey="5">5</Dropdown.Item>
+                  <Dropdown.Item eventKey="6">6</Dropdown.Item>
+                  <Dropdown.Item eventKey="7">7</Dropdown.Item>
+                  <Dropdown.Item eventKey="8">8</Dropdown.Item>
+                  <Dropdown.Item eventKey="9">9</Dropdown.Item>
+                  <Dropdown.Item eventKey="10">10</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
-            </div>
-            <div className="col">
-              <input type="text" className="form-control" placeholder="Incline" />
-            </div>
-          </div>
-        </form>
-        <Button variant="primary">Add Block</Button>
+            </Col>
+          </Form.Group>
+          <fieldset>
+            <Form.Group as={Row}>
+              <Form.Label as="legend" column sm={2}>
+                Pace
+              </Form.Label>
+              <Col sm={10}>
+                <Form.Check
+                  type="radio"
+                  value="Base Pace"
+                  label="Base Pace"
+                  checked={this.state.selectedTreadmillExercise.pace === 'Base Pace'}
+                  onChange={this.handlePaceChange}
+                />
+                <Form.Check
+                  type="radio"
+                  value="Push Pace"
+                  label="Push Pace"
+                  checked={this.state.selectedTreadmillExercise.pace === 'Push Pace'}
+                  onChange={this.handlePaceChange}
+                />
+                <Form.Check
+                  type="radio"
+                  value="All Out"
+                  label="All Out"
+                  checked={this.state.selectedTreadmillExercise.pace === 'All Out'}
+                  onChange={this.handlePaceChange}
+                />
+              </Col>
+            </Form.Group>
+          </fieldset>
+
+          <Form.Group as={Row}>
+            <Col sm={{ span: 10, offset: 2 }}>
+              <Button onClick={this.onAddBlockClick}>Add Block</Button>
+            </Col>
+          </Form.Group>
+        </Form>
       </div>
-    </div>
-  )
+    )
+  }
 }
