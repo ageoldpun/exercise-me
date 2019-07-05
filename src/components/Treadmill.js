@@ -14,7 +14,7 @@ export default class Treadmill extends React.Component {
       treadmillExercises: [],
       selectedTreadmillExercise: {
         number: 1,
-        time: undefined,
+        time: 0,
         incline: 1,
         pace: 'Base Pace',
       },
@@ -57,7 +57,7 @@ export default class Treadmill extends React.Component {
     this.setState({
       selectedTreadmillExercise: {
         number: this.state.selectedTreadmillExercise.number + 1,
-        time: undefined,
+        time: 0,
         incline: 1,
         pace: 'Base Pace',
       }
@@ -96,7 +96,7 @@ export default class Treadmill extends React.Component {
               Time
             </Form.Label>
             <Col sm={2}>
-              <Form.Control type="text" placeholder='seconds' value={this.state.selectedTreadmillExercise.time} onChange={this.handleTimeChange} />
+              <Form.Control type="number" placeholder='seconds' value={this.state.selectedTreadmillExercise.time} onChange={this.handleTimeChange} />
             </Col>
           </Form.Group>
 
