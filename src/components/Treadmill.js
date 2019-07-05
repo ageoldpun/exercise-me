@@ -134,6 +134,7 @@ export default class Treadmill extends React.Component {
                   type="radio"
                   value="Base Pace"
                   label="Base Pace"
+                  id="Base Pace"
                   checked={this.state.selectedTreadmillExercise.pace === 'Base Pace'}
                   onChange={this.handlePaceChange}
                 />
@@ -141,6 +142,7 @@ export default class Treadmill extends React.Component {
                   type="radio"
                   value="Push Pace"
                   label="Push Pace"
+                  id="Push Pace"
                   checked={this.state.selectedTreadmillExercise.pace === 'Push Pace'}
                   onChange={this.handlePaceChange}
                 />
@@ -148,6 +150,7 @@ export default class Treadmill extends React.Component {
                   type="radio"
                   value="All Out"
                   label="All Out"
+                  id="All Out"
                   checked={this.state.selectedTreadmillExercise.pace === 'All Out'}
                   onChange={this.handlePaceChange}
                 />
