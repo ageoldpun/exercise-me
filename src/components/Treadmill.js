@@ -13,7 +13,8 @@ export default class Treadmill extends React.Component {
     this.state = {
       treadmillExercises: [],
       selectedTreadmillExercise: {
-        time: null,
+        number: 1,
+        time: undefined,
         incline: 1,
         pace: 'Base Pace',
       },
@@ -26,7 +27,6 @@ export default class Treadmill extends React.Component {
 
   handleTimeChange(changeEvent) {
     this.setState({
-      ...this.state,
       selectedTreadmillExercise: {
         ...this.state.selectedTreadmillExercise,
         time: changeEvent.target.value,
@@ -36,7 +36,6 @@ export default class Treadmill extends React.Component {
 
   handlePaceChange(changeEvent) {
     this.setState({
-      ...this.state,
       selectedTreadmillExercise: {
         ...this.state.selectedTreadmillExercise,
         pace: changeEvent.target.value,
@@ -46,7 +45,6 @@ export default class Treadmill extends React.Component {
 
   handleInclineChange(eventKey) {
     this.setState({
-      ...this.state,
       selectedTreadmillExercise: {
         ...this.state.selectedTreadmillExercise,
         incline: eventKey,
@@ -58,7 +56,8 @@ export default class Treadmill extends React.Component {
     this.state.treadmillExercises.push(this.state.selectedTreadmillExercise);
     this.setState({
       selectedTreadmillExercise: {
-        time: null,
+        number: this.state.selectedTreadmillExercise.number + 1,
+        time: undefined,
         incline: 1,
         pace: 'Base Pace',
       }
@@ -71,23 +70,25 @@ export default class Treadmill extends React.Component {
         <h2>Treadmill</h2>
         {this.state.treadmillExercises.length > 0 &&
           <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>Time</th>
-              <th>Pace</th>
-              <th>Incline</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.treadmillExercises.map(exercise => (
+            <thead>
               <tr>
-                <td>{exercise.time}</td>
-                <td>{exercise.pace}</td>
-                <td>{exercise.incline}</td>
+                <th>Block Number</th>
+                <th>Time</th>
+                <th>Pace</th>
+                <th>Incline</th>
               </tr>
-            ))}
-          </tbody>
-        </Table>
+            </thead>
+            <tbody>
+              {this.state.treadmillExercises.map(exercise => (
+                <tr key={exercise.number}>
+                  <td>{exercise.number}</td>
+                  <td>{exercise.time}</td>
+                  <td>{exercise.pace}</td>
+                  <td>{exercise.incline}</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
         }
         <Form>
           <Form.Group as={Row}>
@@ -95,7 +96,7 @@ export default class Treadmill extends React.Component {
               Time
             </Form.Label>
             <Col sm={2}>
-              <Form.Control type="text" placeholder="seconds" value={this.state.selectedTreadmillExercise.time} onChange={this.handleTimeChange} />
+              <Form.Control type="text" placeholder='seconds' value={this.state.selectedTreadmillExercise.time} onChange={this.handleTimeChange} />
             </Col>
           </Form.Group>
 
