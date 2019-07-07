@@ -1,11 +1,11 @@
 import React from 'react';
-import Countdown from 'react-countdown-now';
+import Countdown, { zeroPad } from 'react-countdown-now';
 
 // Temporary until I get everything working
 import { BlockStub } from '../stubs/BlockStub';
 
 const countdownRenderer = ({ hours, minutes, seconds }) => {
-    return <span>{minutes}:{seconds}</span>;
+    return <span>{zeroPad(minutes, 2)}:{zeroPad(seconds, 2)}</span>;
 };
 const workoutEndTime = Date.now() + BlockStub.reduce((accumulator, block) => {
   return accumulator + block.time;
