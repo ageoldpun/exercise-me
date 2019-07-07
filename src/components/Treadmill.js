@@ -16,7 +16,7 @@ export default class Treadmill extends React.Component {
         number: 1,
         time: 0,
         incline: 1,
-        pace: 'Base Pace',
+        name: 'Base Pace',
       },
     }
     this.handleTimeChange = this.handleTimeChange.bind(this);
@@ -38,7 +38,7 @@ export default class Treadmill extends React.Component {
     this.setState({
       selectedTreadmillExercise: {
         ...this.state.selectedTreadmillExercise,
-        pace: changeEvent.target.value,
+        name: changeEvent.target.value,
       },
     });
   }
@@ -59,7 +59,7 @@ export default class Treadmill extends React.Component {
         number: this.state.selectedTreadmillExercise.number + 1,
         time: 0,
         incline: 1,
-        pace: 'Base Pace',
+        name: 'Base Pace',
       }
     });
   }
@@ -83,7 +83,7 @@ export default class Treadmill extends React.Component {
                 <tr key={exercise.number}>
                   <td>{exercise.number}</td>
                   <td>{exercise.time}</td>
-                  <td>{exercise.pace}</td>
+                  <td>{exercise.name}</td>
                   <td>{exercise.incline}</td>
                 </tr>
               ))}
@@ -137,7 +137,7 @@ export default class Treadmill extends React.Component {
                   value="Base Pace"
                   label="Base Pace"
                   id="Base Pace"
-                  checked={this.state.selectedTreadmillExercise.pace === 'Base Pace'}
+                  checked={this.state.selectedTreadmillExercise.name === 'Base Pace'}
                   onChange={this.handlePaceChange}
                 />
                 <Form.Check
@@ -145,7 +145,7 @@ export default class Treadmill extends React.Component {
                   value="Push Pace"
                   label="Push Pace"
                   id="Push Pace"
-                  checked={this.state.selectedTreadmillExercise.pace === 'Push Pace'}
+                  checked={this.state.selectedTreadmillExercise.name === 'Push Pace'}
                   onChange={this.handlePaceChange}
                 />
                 <Form.Check
@@ -153,7 +153,7 @@ export default class Treadmill extends React.Component {
                   value="All Out"
                   label="All Out"
                   id="All Out"
-                  checked={this.state.selectedTreadmillExercise.pace === 'All Out'}
+                  checked={this.state.selectedTreadmillExercise.name === 'All Out'}
                   onChange={this.handlePaceChange}
                 />
               </Col>
