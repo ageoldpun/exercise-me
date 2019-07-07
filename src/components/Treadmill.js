@@ -125,6 +125,7 @@ export default class Treadmill extends React.Component {
               </Dropdown>
             </Col>
           </Form.Group>
+
           <fieldset>
             <Form.Group as={Row}>
               <Form.Label as="legend" column sm={2}>
