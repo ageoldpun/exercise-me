@@ -41,7 +41,11 @@ export default class Workout extends React.Component {
             <Countdown
               date={this.state.nextWorkoutTime}
               key={this.state.nextWorkoutTime}
-              onComplete={this.countdownCallback}
+              onComplete={
+                (this.state.currentBlockIndex + 1) < BlockStub.length ?
+                  this.countdownCallback :
+                  undefined
+              }
               renderer={countdownRenderer}
             />
           </h2>
@@ -55,8 +59,9 @@ export default class Workout extends React.Component {
         <br />
         <br />
         <h1>Up Next</h1>
-        {/* This bugs out on the last block */}
-        <h2>{BlockStub[this.state.currentBlockIndex+1].name}</h2>
+        {((this.state.currentBlockIndex + 1) < BlockStub.length) &&
+          <h2>{BlockStub[this.state.currentBlockIndex + 1].name}</h2>
+        }
         <br />
         <br />
         <h1>Remaining Time:&nbsp;
