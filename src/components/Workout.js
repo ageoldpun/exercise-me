@@ -36,8 +36,8 @@ export default class Workout extends React.Component {
       <div>
         <div>
           <h1>Current Exercise</h1>
-          <h2>Exercise: {this.state.currentBlock.name}</h2>
-          <h2>Time Left:&nbsp;
+          <h2>{this.state.currentBlock.name}</h2>
+          <h2>
             <Countdown
               date={this.state.nextWorkoutTime}
               key={this.state.nextWorkoutTime}
@@ -55,10 +55,11 @@ export default class Workout extends React.Component {
         <br />
         <br />
         <h1>Up Next</h1>
-        <h2>Exercise: {BlockStub[this.state.currentBlockIndex+1].name}</h2>
+        {/* This bugs out on the last block */}
+        <h2>{BlockStub[this.state.currentBlockIndex+1].name}</h2>
         <br />
         <br />
-        <h1>Total Time Left:&nbsp;
+        <h1>Remaining Time:&nbsp;
           <Countdown
             date={workoutEndTime}
             renderer={countdownRenderer}
