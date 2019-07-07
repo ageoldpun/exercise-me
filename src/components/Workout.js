@@ -35,9 +35,9 @@ export default class Workout extends React.Component {
     return (
       <div>
         <div>
-          <h1>Current Exercise</h1>
-          <h2>{this.state.currentBlock.name}</h2>
-          <h2>
+          <h2>Current Exercise</h2>
+          <h4>{this.state.currentBlock.name}</h4>
+          <h4>
             <Countdown
               date={this.state.nextWorkoutTime}
               key={this.state.nextWorkoutTime}
@@ -48,26 +48,26 @@ export default class Workout extends React.Component {
               }
               renderer={countdownRenderer}
             />
-          </h2>
+          </h4>
           {this.state.currentBlock.incline &&
-            <h2>Incline: {this.state.currentBlock.incline}</h2>
+            <h4>Incline: {this.state.currentBlock.incline}</h4>
           }
           {this.state.currentBlock.reps &&
-            <h2>Reps: {this.state.currentBlock.reps}</h2>
+            <h4>Reps: {this.state.currentBlock.reps}</h4>
           }
         </div>
         <br />
-        <h1>Up Next</h1>
+        <h2>Up Next</h2>
         {((this.state.currentBlockIndex + 1) < BlockStub.length) &&
-          <h2>{BlockStub[this.state.currentBlockIndex + 1].name} - {BlockStub[this.state.currentBlockIndex + 1].time} seconds</h2>
+          <h4>{BlockStub[this.state.currentBlockIndex + 1].name} - {BlockStub[this.state.currentBlockIndex + 1].time} seconds</h4>
         }
         <br />
-        <h1>Remaining Time:&nbsp;
+        <h2>Remaining Time:&nbsp;
           <Countdown
             date={workoutEndTime}
             renderer={countdownRenderer}
           />
-        </h1>
+        </h2>
       </div>
     )
   }

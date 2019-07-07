@@ -11,8 +11,6 @@ const workoutView = true;
 function App() {
   return (
     <div className="App">
-      <h1 className="App-header">Exercise Me</h1>
-
       {!workoutView &&
         <div>
           <Treadmill />
