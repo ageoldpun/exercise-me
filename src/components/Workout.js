@@ -57,12 +57,10 @@ export default class Workout extends React.Component {
           }
         </div>
         <br />
-        <br />
         <h1>Up Next</h1>
         {((this.state.currentBlockIndex + 1) < BlockStub.length) &&
-          <h2>{BlockStub[this.state.currentBlockIndex + 1].name}</h2>
+          <h2>{BlockStub[this.state.currentBlockIndex + 1].name} - {BlockStub[this.state.currentBlockIndex + 1].time} seconds</h2>
         }
-        <br />
         <br />
         <h1>Remaining Time:&nbsp;
           <Countdown
