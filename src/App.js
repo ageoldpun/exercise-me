@@ -5,6 +5,7 @@ import Treadmill from './components/Treadmill';
 import Floor from './components/Floor';
 import Workout from './components/Workout';
 
+// Post MVP is to make this work
 const workoutView = true;
 
 function App() {
