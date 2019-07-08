@@ -16,7 +16,6 @@ function App() {
           <Treadmill />
           <Floor />
           <br />
-          <br />
           <button type="submit" className="btn btn-primary">Create Workout</button>
         </div>
       }

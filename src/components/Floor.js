@@ -45,9 +45,9 @@ export default class Floor extends React.Component {
       floorExercises: [],
       selectedFloorExercise: {
         number: 1,
-        time: 0,
+        time: 60,
         name: 'Low Row',
-        reps: 0,
+        reps: 8,
       },
     }
     this.handleTimeChange = this.handleTimeChange.bind(this);
@@ -88,9 +88,9 @@ export default class Floor extends React.Component {
     this.setState({
       selectedFloorExercise: {
         number: this.state.selectedFloorExercise.number + 1,
-        time: 0,
+        time: 60,
         name: EXERCISE_NAMES[0],
-        reps: 0,
+        reps: 8,
       }
     });
   }
@@ -127,7 +127,7 @@ export default class Floor extends React.Component {
               Time
             </Form.Label>
             <Col sm={2}>
-              <Form.Control type="number" placeholder='seconds' value={this.state.selectedFloorExercise.time} onChange={this.handleTimeChange} />
+              <Form.Control type="number" value={this.state.selectedFloorExercise.time} onChange={this.handleTimeChange} />
             </Col>
           </Form.Group>
 
@@ -155,7 +155,7 @@ export default class Floor extends React.Component {
               Reps
             </Form.Label>
             <Col sm={2}>
-              <Form.Control type="number" placeholder='reps' value={this.state.selectedFloorExercise.reps} onChange={this.handleRepsChange} />
+              <Form.Control type="number" value={this.state.selectedFloorExercise.reps} onChange={this.handleRepsChange} />
             </Col>
           </Form.Group>
 

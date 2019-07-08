@@ -44,7 +44,7 @@ export default class Workout extends React.Component {
               onComplete={
                 (this.state.currentBlockIndex + 1) < BlockStub.length ?
                   this.countdownCallback :
-                  undefined
+                  undefined // would be nice to render some sort of a good job message
               }
               renderer={countdownRenderer}
             />
